@@ -1,0 +1,5 @@
+title: RawLink
+description: RawLink app landing page
+url: "https://rawlink.example.com"
+plugins: []
+include: [".well-known"]

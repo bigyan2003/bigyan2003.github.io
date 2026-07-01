@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RawLink</title>
+  <style>
+    body {
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #0b0b0b;
+      color: #fff;
+      text-align: center;
+    }
+    .card { max-width: 360px; padding: 24px; }
+    h1 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+    p { color: #aaa; margin-bottom: 1.5rem; }
+    a.button {
+      display: inline-block;
+      padding: 12px 24px;
+      border-radius: 8px;
+      background: #fff;
+      color: #0b0b0b;
+      text-decoration: none;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>RawLink</h1>
+    <p>Redirecting you to the app...</p>
+    <a class="button" id="fallback-link" href="https://play.google.com/store/apps/details?id=com.rawlink.app">Open App</a>
+  </div>
+
+  <script>
+    // TODO: replace with real App Store / Play Store URLs once published
+    var PLAY_STORE_URL = "https://play.google.com/store/apps/details?id=com.rawlink.app";
+    var APP_STORE_URL = "https://apps.apple.com/app/idXXXXXXXXX";
+
+    var ua = navigator.userAgent || "";
+    var isIOS = /iPad|iPhone|iPod/.test(ua);
+    var isAndroid = /Android/.test(ua);
+    var target = isIOS ? APP_STORE_URL : PLAY_STORE_URL;
+
+    document.getElementById("fallback-link").href = target;
+
+    if (isIOS || isAndroid) {
+      window.location.replace(target);
+    }
+  </script>
+</body>
+</html>
