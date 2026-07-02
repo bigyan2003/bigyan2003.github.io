@@ -45,12 +45,25 @@
     var ua = navigator.userAgent || "";
     var isIOS = /iPad|iPhone|iPod/.test(ua);
     var isAndroid = /Android/.test(ua);
-    var target = isIOS ? APP_STORE_URL : PLAY_STORE_URL;
+    var storeUrl = isIOS ? APP_STORE_URL : PLAY_STORE_URL;
 
-    document.getElementById("fallback-link").href = target;
+    document.getElementById("fallback-link").href = storeUrl;
 
-    if (isIOS || isAndroid) {
-      window.location.replace(target);
+    // Path looks like /farm/:id or /product/:id
+    var parts = window.location.pathname.split("/").filter(Boolean);
+    var type = parts[0];
+    var id = parts[1];
+
+    if (type && id && (type === "farm" || type === "product")) {
+      // Try to open the app via its custom URL scheme (matches "scheme": "rawlink" in app.json).
+      window.location.replace("rawlink://" + type + "/" + id);
+      // If the app isn't installed, the scheme navigation is a no-op,
+      // so fall back to the store after a short delay.
+      setTimeout(function () {
+        window.location.replace(storeUrl);
+      }, 2000);
+    } else if (isIOS || isAndroid) {
+      window.location.replace(storeUrl);
     }
   </script>
 </body>

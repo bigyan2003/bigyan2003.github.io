@@ -3,7 +3,7 @@
     "relation": ["delegate_permission/common.handle_all_urls"],
     "target": {
       "namespace": "android_app",
-      "package_name": "com.nextevolvion.app",
+      "package_name": "com.nextevolvion.rawlink",
       "sha256_cert_fingerprints": [
         "DA:6E:9C:35:5C:C7:D4:26:4D:9A:92:2B:61:8D:B3:56:E1:AC:CB:F4:14:20:BA:0B:B4:07:E7:E6:85:26:71:5B"
       ]
